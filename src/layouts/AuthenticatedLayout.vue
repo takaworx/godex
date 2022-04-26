@@ -18,11 +18,6 @@
 
 <script>
 export default {
-  computed: {
-    pokemons () {
-      return this.$store.getters['pokemon/getPokemons']
-    }
-  },
   mounted () {
     this.$store.dispatch('pokemon/fetchPokemons')
     this.$store.dispatch('pokemon/fetchPokemonColors')

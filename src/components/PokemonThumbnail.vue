@@ -15,7 +15,7 @@
         </div>
       </v-card>
     </div>
-    <v-skeleton-loader v-else type="image, article" />
+    <v-skeleton-loader v-else type="list-item-avatar-three-line" />
   </div>
 </template>
 

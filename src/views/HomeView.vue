@@ -5,12 +5,13 @@
         <pokemon-thumbnail :name="pokemon.name" />
       </v-col>
     </v-row>
-    <infinite-loading />
+    <div class="text-center">
+      <v-progress-circular indeterminate v-intersect="paginate"></v-progress-circular>
+    </div>
   </v-container>
 </template>
 
 <script>
-import PokemonApi from '@/services/pokemon-api'
 import PokemonThumbnail from '@/components/PokemonThumbnail.vue'
 
 export default {
@@ -18,22 +19,17 @@ export default {
     PokemonThumbnail
   },
   data: () => ({
-    currentPage: 1,
-    resultPerPage: 8,
-    pokemons: []
+    currentPage: 0,
+    resultPerPage: 8
   }),
-  mounted () {
-    this.getPokemons()
+  computed: {
+    pokemons () {
+      return this.$store.getters['pokemon/getPokemons'].slice(0, this.currentPage * this.resultPerPage)
+    }
   },
   methods: {
-    async getPokemons () {
-      try {
-        const offset = this.resultPerPage * (this.currentPage - 1)
-        const response = await PokemonApi.getPokemonList(offset, this.resultPerPage)
-        this.pokemons = response.results
-      } catch (err) {
-        console.error(err)
-      }
+    paginate () {
+      this.currentPage++
     }
   }
 }
