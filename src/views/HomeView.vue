@@ -1,11 +1,11 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="12" v-for="(pokemon, key) in pokemons" :key="key">
+      <v-col cols="12" sm="6" md="4" xl="3" v-for="(pokemon, key) in pokemons" :key="key">
         <pokemon-thumbnail :name="pokemon.name" />
       </v-col>
     </v-row>
-    <div class="text-center">
+    <div class="mt-8 text-center">
       <v-progress-circular indeterminate v-intersect="paginate"></v-progress-circular>
     </div>
   </v-container>
@@ -19,10 +19,28 @@ export default {
     PokemonThumbnail
   },
   data: () => ({
-    currentPage: 0,
-    resultPerPage: 8
+    currentPage: 0
   }),
   computed: {
+    resultPerPage () {
+      if (window.innerWidth >= 1904) {
+        return 32
+      }
+
+      if (window.innerWidth >= 1264) {
+        return 21
+      }
+
+      if (window.innerWidth >= 960) {
+        return 32
+      }
+
+      if (window.innerWidth >= 600) {
+        return 16
+      }
+
+      return 8
+    },
     pokemons () {
       return this.$store.getters['pokemon/getPokemons'].slice(0, this.currentPage * this.resultPerPage)
     }

@@ -1,12 +1,12 @@
 <template>
-  <div class="pokemon-card">
+  <div class="pokemon-thumbnail">
     <div v-if="loaded" class="pokemon-card-details">
       <v-card :dark="cardData.dark" :color="cardData.color">
         <div class="d-flex flex-no-wrap justify-space-between">
           <div>
             <v-card-title class="text-uppercase py-2">{{ data.name }}</v-card-title>
             <v-card-actions>
-              <v-btn outlined rounded dark small class="ml-2 mt-2">Tap to view</v-btn>
+              <v-btn outlined rounded small :dark="cardData.dark" class="ml-2 mt-2">Tap to view</v-btn>
             </v-card-actions>
           </div>
           <v-avatar size="96" class="ma-2">
@@ -50,7 +50,7 @@ export default {
     cardData () {
       return {
         color: this.cardColor,
-        dark: this.cardColor !== 'grey'
+        dark: this.cardColor !== 'grey lighten-3'
       }
     },
     cardColor () {
@@ -81,3 +81,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.pokemon-thumbnail {
+  margin: 0 auto;
+  max-width: 296px;
+
+  @media (min-width: 600px) {
+    max-width: unset;
+  }
+}
+</style>
