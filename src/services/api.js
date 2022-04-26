@@ -2,7 +2,7 @@ import axios from 'axios'
 import localforage from 'localforage'
 
 const api = axios.create({
-  baseURL: process.env.APP_API
+  baseURL: process.env.VUE_APP_API
 })
 
 localforage.getItem('token')

@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 import RedirectUnauthenticated from '@/guards/redirect-unauthenticated'
 
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
+import GuestLayout from '@/layouts/GuestLayout.vue'
+
 import HomeView from '@/views/HomeView.vue'
 import SearchView from '@/views/SearchView.vue'
 import LoginView from '@/views/LoginView.vue'
@@ -30,8 +32,14 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'login',
-    component: LoginView
+    component: GuestLayout,
+    children: [
+      {
+        path: '',
+        name: 'login',
+        component: LoginView
+      }
+    ]
   }
 ]
 
