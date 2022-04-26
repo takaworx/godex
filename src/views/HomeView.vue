@@ -5,6 +5,7 @@
         <pokemon-thumbnail :name="pokemon.name" />
       </v-col>
     </v-row>
+    <infinite-loading />
   </v-container>
 </template>
 
