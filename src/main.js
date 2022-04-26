@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import InfiniteLoading from 'vue-infinite-loading'
 
 import App from './App.vue'
 import './registerServiceWorker'
@@ -8,8 +7,6 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
-
-Vue.use(InfiniteLoading)
 
 new Vue({
   router,
