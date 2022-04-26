@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import RedirectUnauthenticated from '@/guards/redirect-unauthenticated'
+
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
 import HomeView from '@/views/HomeView.vue'
 import SearchView from '@/views/SearchView.vue'
@@ -12,6 +14,7 @@ const routes = [
   {
     path: '/',
     component: AuthenticatedLayout,
+    beforeEnter: RedirectUnauthenticated,
     children: [
       {
         path: '',
