@@ -45,7 +45,7 @@ export default {
       return this.data !== null
     },
     colorData () {
-      return this.$store.getters['pokemon/getColors'].find(color => color.pokemons.find(pokemon => pokemon.name === this.name)).name
+      return this.$store.getters['pokemon/getColors'].find(color => color.pokemons.find(pokemon => pokemon.name === this.name))?.name
     },
     cardData () {
       return {
