@@ -32,12 +32,8 @@
         </v-row>
       </v-container>
       <v-card-actions class="mt-4 justify-center">
-        <v-btn icon outlined x-large>
-          <v-icon>mdi-heart-outline</v-icon>
-        </v-btn>
-        <v-btn icon outlined x-large>
-          <v-icon>mdi-thumb-down-outline</v-icon>
-        </v-btn>
+        <action-like :targetId="data.id"></action-like>
+        <action-dislike :targetId="data.id"></action-dislike>
         <v-btn icon outlined x-large>
           <v-icon>mdi-star-outline</v-icon>
         </v-btn>
@@ -47,6 +43,9 @@
 </template>
 
 <script>
+import ActionLike from '@/components/ActionLike.vue'
+import ActionDislike from '@/components/ActionDislike.vue'
+
 export default {
   props: {
     data: {
@@ -61,6 +60,10 @@ export default {
   data: () => ({
     showCardDialog: false
   }),
+  components: {
+    ActionLike,
+    ActionDislike
+  },
   computed: {
     primaryColor () {
       const colors = this.cardData.color.split(' ')
