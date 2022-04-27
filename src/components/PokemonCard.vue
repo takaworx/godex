@@ -34,9 +34,7 @@
       <v-card-actions class="mt-4 justify-center">
         <action-like :targetId="data.id"></action-like>
         <action-dislike :targetId="data.id"></action-dislike>
-        <v-btn icon outlined x-large>
-          <v-icon>mdi-star-outline</v-icon>
-        </v-btn>
+        <action-favorite :targetId="data.id"></action-favorite>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -45,6 +43,7 @@
 <script>
 import ActionLike from '@/components/ActionLike.vue'
 import ActionDislike from '@/components/ActionDislike.vue'
+import ActionFavorite from '@/components/ActionFavorite.vue'
 
 export default {
   props: {
@@ -62,7 +61,8 @@ export default {
   }),
   components: {
     ActionLike,
-    ActionDislike
+    ActionDislike,
+    ActionFavorite
   },
   computed: {
     primaryColor () {

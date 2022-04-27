@@ -30,7 +30,23 @@ const dislike = (id) => {
   })
 }
 
+const favorite = (id) => {
+  return new Promise((resolve, reject) => {
+    Vue.axios.post('/v1/favorite', {
+      _method: 'PUT',
+      pokemon_id: id
+    })
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject((err?.response?.data) ?? err)
+      })
+  })
+}
+
 export default {
   like,
-  dislike
+  dislike,
+  favorite
 }

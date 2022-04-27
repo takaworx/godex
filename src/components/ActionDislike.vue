@@ -1,5 +1,5 @@
 <template>
-  <v-btn :disabled="isLiked" :color="color" @click.prevent="like" icon outlined x-large>
+  <v-btn :disabled="isLiked" :color="color" @click.prevent="dislike" icon outlined x-large>
     <v-icon>{{ icon }}</v-icon>
     <v-snackbar v-model="toastShow">
       {{ toastMessage }}
@@ -49,10 +49,10 @@ export default {
     }
   },
   methods: {
-    async  like () {
+    async  dislike () {
       try {
-        const like = await PokemonService.dislike(this.targetId)
-        this.$store.commit('setUser', like.data)
+        const dislike = await PokemonService.dislike(this.targetId)
+        this.$store.commit('setUser', dislike.data)
       } catch (err) {
         this.toastMessage = err.message
         this.toastShow = true
