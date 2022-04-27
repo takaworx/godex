@@ -25,20 +25,32 @@ import PokemonCard from '@/components/PokemonCard.vue'
 
 export default {
   props: {
+    id: {
+      type: Number,
+      required: false
+    },
     name: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     }
   },
   data: () => ({
     data: null
   }),
   mounted () {
-    this.getPokemonData()
+    if (this.id) {
+      this.getPokemonData(this.id)
+    } else {
+      this.getPokemonData(this.name)
+    }
   },
   methods: {
-    async getPokemonData () {
-      this.data = await PokemonApi.getPokemonByName(this.name)
+    async getPokemonData (name) {
+      this.data = await PokemonApi.getPokemonByName(name)
+    },
+    fetchDataFromStore () {
+      this.$store.getters['pokemon/getPokemons'].find()
     }
   },
   components: {
@@ -49,7 +61,7 @@ export default {
       return this.data !== null
     },
     colorData () {
-      return this.$store.getters['pokemon/getColors'].find(color => color.pokemons.find(pokemon => pokemon.name === this.name))?.name
+      return this.$store.getters['pokemon/getColors'].find(color => color.pokemons.find(pokemon => pokemon.name === this.data.name))?.name
     },
     cardData () {
       return {

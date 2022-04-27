@@ -6,6 +6,7 @@
           <v-icon size="72">mdi-account</v-icon>
         </v-avatar>
         <h1 class="mt-2">{{ name }}</h1>
+        <div v-if="user.birthday" class="grey--text">{{ user.birthday }}</div>
         <v-form v-if="isAuthUser" :disabled="isLoading" @submit.prevent="save">
           <v-text-field rounded outlined hide-details="auto" :error-messages="$errorHandler().get('first_name')" label="First Name" type="text" class="my-4" v-model="user.first_name"></v-text-field>
           <v-text-field rounded outlined hide-details="auto" :error-messages="$errorHandler().get('last_name')" label="Last Name" type="text" class="my-4" v-model="user.last_name"></v-text-field>
@@ -34,6 +35,24 @@
           <v-btn large rounded block :loading="isLoading" color="primary" type="submit">Update</v-btn>
           <v-btn large rounded outlined block class="mt-2" color="red" type="button" @click.prevent="logout">Logout</v-btn>
         </v-form>
+        <div class="mt-6 text-center">
+          <strong>Liked Pokemons</strong>
+          <div style="max-width: 375px" class="d-block mx-auto my-2">
+            <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._likes" :key="key" :id="pokemonId"></pokemon-thumbnail>
+          </div>
+        </div>
+        <div class="mt-6 text-center">
+          <strong>Disliked Pokemons</strong>
+          <div style="max-width: 375px" class="d-block mx-auto my-2">
+            <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._dislikes" :key="key" :id="pokemonId"></pokemon-thumbnail>
+          </div>
+        </div>
+        <div class="mt-6 text-center">
+          <strong>Favorite Pokemons</strong>
+          <div style="max-width: 375px" class="d-block mx-auto my-2">
+            <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._favorites" :key="key" :id="pokemonId"></pokemon-thumbnail>
+          </div>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -43,6 +62,8 @@
 import UserService from '@/services/user'
 
 import storage from '@/abstract/storage'
+
+import PokemonThumbnail from '@/components/PokemonThumbnail.vue'
 
 export default {
   watch: {
@@ -67,7 +88,7 @@ export default {
       let name = ''
 
       if (this.user.first_name === '' && this.user.last_name === '') {
-        return 'Hi, there!'
+        return `User#${this.user.id}`
       }
 
       if (this.user.first_name !== '') {
@@ -86,6 +107,9 @@ export default {
     isAuthUser () {
       return this.user?.id === this.authUser?.id
     }
+  },
+  components: {
+    PokemonThumbnail
   },
   mounted () {
     this.findUser()
