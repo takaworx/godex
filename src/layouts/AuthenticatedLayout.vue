@@ -6,7 +6,7 @@
       </v-btn>
       <v-toolbar-title class="pl-1">GoDex</v-toolbar-title>
       <v-spacer />
-      <v-btn icon>
+      <v-btn icon link :to="{ name: 'user', params: { id: user.id } }">
         <v-icon>mdi-account-outline</v-icon>
       </v-btn>
     </v-app-bar>
@@ -18,6 +18,11 @@
 
 <script>
 export default {
+  computed: {
+    user () {
+      return this.$store.getters.getUser
+    }
+  },
   mounted () {
     this.$store.dispatch('pokemon/fetchPokemons')
     this.$store.dispatch('pokemon/fetchPokemonColors')

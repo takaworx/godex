@@ -32,6 +32,7 @@
             </v-date-picker>
           </v-dialog>
           <v-btn large rounded block :loading="isLoading" color="primary" type="submit">Update</v-btn>
+          <v-btn large rounded outlined block class="mt-2" color="red" type="button" @click.prevent="logout">Logout</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -40,6 +41,8 @@
 
 <script>
 import UserService from '@/services/user'
+
+import storage from '@/abstract/storage'
 
 export default {
   watch: {
@@ -108,6 +111,17 @@ export default {
       }
 
       this.isLoading = false
+    },
+    async logout () {
+      try {
+        await UserService.logout()
+        await storage.removeItem('token')
+        this.$store.commit('setUser', null)
+        this.$router.push({ name: 'login' })
+      } catch (err) {
+        console.error(err)
+        alert('Something went wrong!')
+      }
     }
   }
 }

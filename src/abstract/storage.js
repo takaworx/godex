@@ -31,7 +31,20 @@ const setItem = (key, value) => {
   })
 }
 
+const removeItem = (key) => {
+  return new Promise((resolve, reject) => {
+    storage.removeItem(key, (err) => {
+      if (err) {
+        return reject(err)
+      }
+
+      resolve(true)
+    })
+  })
+}
+
 export default {
   getItem,
-  setItem
+  setItem,
+  removeItem
 }

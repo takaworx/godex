@@ -53,6 +53,18 @@ const login = (email, password) => {
   })
 }
 
+const logout = () => {
+  return new Promise((resolve, reject) => {
+    Vue.axios.post('/v1/logout')
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject((err?.response?.data) ?? err)
+      })
+  })
+}
+
 const register = (email, password, passwordConfirmation) => {
   return new Promise((resolve, reject) => {
     Vue.axios.post('/v1/register', {
@@ -79,6 +91,7 @@ export default {
   updateUser,
   findUser,
   login,
+  logout,
   register,
   saveAccessToken
 }
