@@ -6,7 +6,7 @@
           <div>
             <v-card-title class="text-uppercase py-2">{{ data.name }}</v-card-title>
             <v-card-actions>
-              <v-btn outlined rounded small :dark="cardData.dark" class="ml-2 mt-2">Tap to view</v-btn>
+              <pokemon-card :data="data" :cardData="cardData" />
             </v-card-actions>
           </div>
           <v-avatar size="96" class="ma-2">
@@ -21,6 +21,7 @@
 
 <script>
 import PokemonApi from '@/services/pokemon-api'
+import PokemonCard from '@/components/PokemonCard.vue'
 
 export default {
   props: {
@@ -39,6 +40,9 @@ export default {
     async getPokemonData () {
       this.data = await PokemonApi.getPokemonByName(this.name)
     }
+  },
+  components: {
+    PokemonCard
   },
   computed: {
     loaded () {
