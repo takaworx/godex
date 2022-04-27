@@ -9,6 +9,7 @@ import GuestLayout from '@/layouts/GuestLayout.vue'
 import HomeView from '@/views/HomeView.vue'
 import SearchView from '@/views/SearchView.vue'
 import LoginView from '@/views/LoginView.vue'
+import RegisterView from '@/views/RegisterView.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,17 @@ const routes = [
         path: '',
         name: 'login',
         component: LoginView
+      }
+    ]
+  },
+  {
+    path: '/register',
+    component: GuestLayout,
+    children: [
+      {
+        path: '',
+        name: 'register',
+        component: RegisterView
       }
     ]
   }
