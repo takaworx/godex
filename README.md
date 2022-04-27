@@ -1,29 +1,11 @@
-# godex
+# GoDex
 
-## Project setup
-```
-npm install
-```
+GO team pokedex
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# Installation
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- clone the repository
+- run `npm install`
+- Update the env variable `VUE_APP_API` make sure this points to the API's url
+- run `npm run serve`
+- complete
