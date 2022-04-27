@@ -4,8 +4,8 @@
       <v-col cols="12">
         <v-form class="auth-form" @submit.prevent="login" :disabled="isLoading">
           <h1 class="mb-5">GoDex</h1>
-          <v-text-field autofocus rounded outlined hide-details="auto" :error-messages="this.$errorHandler().get('email')" label="Email" type="email" class="my-4" v-model="email" />
-          <v-text-field rounded outlined hide-details="auto" :error-messages="this.$errorHandler().get('password')" label="Password" type="password" class="my-4" v-model="password" />
+          <v-text-field autofocus rounded outlined hide-details="auto" :error-messages="$errorHandler().get('email')" label="Email" type="email" class="my-4" v-model="email" />
+          <v-text-field rounded outlined hide-details="auto" :error-messages="$errorHandler().get('password')" label="Password" type="password" class="my-4" v-model="password" />
           <v-btn large rounded block :loading="isLoading" color="primary" type="submit">Login</v-btn>
         </v-form>
         <div class="mt-8 text-center">Not yet registered? <router-link :to="{ name: 'register' }">Sign up</router-link></div>

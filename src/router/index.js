@@ -7,7 +7,7 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
 import GuestLayout from '@/layouts/GuestLayout.vue'
 
 import HomeView from '@/views/HomeView.vue'
-import SearchView from '@/views/SearchView.vue'
+import UserView from '@/views/UserView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 
@@ -25,9 +25,9 @@ const routes = [
         component: HomeView
       },
       {
-        path: 'search',
-        name: 'search',
-        component: SearchView
+        path: 'user/:id',
+        name: 'users',
+        component: UserView
       }
     ]
   },
