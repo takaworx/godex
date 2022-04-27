@@ -28,7 +28,7 @@ export default {
       }
 
       if (window.innerWidth >= 1264) {
-        return 21
+        return 24
       }
 
       if (window.innerWidth >= 960) {
@@ -36,7 +36,7 @@ export default {
       }
 
       if (window.innerWidth >= 600) {
-        return 16
+        return 24
       }
 
       return 8
