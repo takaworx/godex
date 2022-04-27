@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="showCardDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+  <v-dialog v-model="showCardDialog" :fullscreen="isMobile" width="375" :hide-overlay="isMobile" transition="dialog-bottom-transition">
     <template v-slot:activator="{ on, attrs }">
       <v-btn outlined rounded small :dark="data.dark" class="ml-2 mt-2" v-bind="attrs" v-on="on">Tap to view</v-btn>
     </template>
@@ -31,7 +31,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-card-actions class="mt-4 justify-center">
+      <v-card-actions class="mt-4 justify-center" :class="{ 'pb-4': !isMobile }">
         <action-like :targetId="data.id"></action-like>
         <action-dislike :targetId="data.id"></action-dislike>
         <action-favorite :targetId="data.id"></action-favorite>
@@ -77,6 +77,9 @@ export default {
       }
 
       return types.join(', ')
+    },
+    isMobile () {
+      return window.innerWidth < 960
     }
   }
 }
