@@ -1,6 +1,6 @@
 # GoDex
 
-GO team pokedex
+GO pokedex
 
 # Installation
 
