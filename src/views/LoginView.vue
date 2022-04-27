@@ -4,8 +4,8 @@
       <v-col cols="12">
         <v-form class="auth-form" @submit.prevent="login">
           <h1 class="mb-5">GoDex</h1>
-          <v-text-field rounded hide-details outlined label="Email" type="email" class="my-4" v-model="email" />
-          <v-text-field rounded hide-details outlined label="Password" type="password" class="my-4" v-model="password" />
+          <v-text-field autofocus rounded outlined hide-details="auto" :error-messages="this.$errorHandler().get('email')" label="Email" type="email" class="my-4" v-model="email" />
+          <v-text-field rounded outlined hide-details="auto" :error-messages="this.$errorHandler().get('password')" label="Password" type="password" class="my-4" v-model="password" />
           <v-btn large rounded block color="primary" type="submit">Login</v-btn>
         </v-form>
       </v-col>
@@ -24,12 +24,17 @@ export default {
   }),
   methods: {
     async login () {
+      this.isLoading = true
+
       try {
-        await UserService.login(this.email, this.password)
+        const login = await UserService.login(this.email, this.password)
+        await UserService.saveAccessToken(login.data.access_token)
         this.$router.push({ name: 'home' })
       } catch (err) {
-        console.error(err)
+        this.$errorHandler().set(err.data)
       }
+
+      this.isLoading = false
     }
   }
 }

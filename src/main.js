@@ -6,6 +6,9 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 
+require('@/plugins/error-handler')
+require('@/plugins/vue-axios')
+
 Vue.config.productionTip = false
 
 new Vue({
