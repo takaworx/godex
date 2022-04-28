@@ -7,21 +7,31 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null
+    user: null,
+    navDrawerOpen: false
   },
   getters: {
     getUser (state) {
       return state.user
+    },
+    getNavDrawerOpen (state) {
+      return state.navDrawerOpen
     }
   },
   mutations: {
     setUser (state, value) {
       state.user = value
+    },
+    setNavDrawer (state, value) {
+      state.navDrawerOpen = value
     }
   },
   actions: {
-    fetchUser ({ commit }) {
-      //
+    openNavDrawer ({ commit }) {
+      commit('setNavDrawer', true)
+    },
+    closeNavDrawer ({ commit }) {
+      commit('setNavDrawer', false)
     }
   },
   modules: {
