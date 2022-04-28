@@ -27,7 +27,7 @@ const routes = [
       },
       {
         path: 'users',
-        name: 'users',
+        name: 'user-list',
         component: UserListView
       },
       {
