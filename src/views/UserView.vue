@@ -37,20 +37,29 @@
         </v-form>
         <div class="mt-6 text-center">
           <strong>Liked Pokemons</strong>
-          <div style="max-width: 375px" class="d-block mx-auto my-2">
+          <div v-if="user._likes.length" style="max-width: 375px" class="d-block mx-auto my-2">
             <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._likes" :key="key" :id="pokemonId"></pokemon-thumbnail>
+          </div>
+          <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
+            No record found
           </div>
         </div>
         <div class="mt-6 text-center">
           <strong>Disliked Pokemons</strong>
-          <div style="max-width: 375px" class="d-block mx-auto my-2">
+          <div v-if="user._dislikes.length" style="max-width: 375px" class="d-block mx-auto my-2">
             <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._dislikes" :key="key" :id="pokemonId"></pokemon-thumbnail>
+          </div>
+          <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
+            No record found
           </div>
         </div>
         <div class="mt-6 text-center">
           <strong>Favorite Pokemons</strong>
-          <div style="max-width: 375px" class="d-block mx-auto my-2">
+          <div v-if="user._favorites.length" style="max-width: 375px" class="d-block mx-auto my-2">
             <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._favorites" :key="key" :id="pokemonId"></pokemon-thumbnail>
+          </div>
+          <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
+            No record found
           </div>
         </div>
       </v-col>

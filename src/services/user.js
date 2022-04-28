@@ -38,6 +38,18 @@ const findUser = (id) => {
   })
 }
 
+const getUserList = (page) => {
+  return new Promise((resolve, reject) => {
+    Vue.axios.get(`/v1/users?page=${page}`)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject((err?.response?.data) ?? err)
+      })
+  })
+}
+
 const login = (email, password) => {
   return new Promise((resolve, reject) => {
     Vue.axios.post('/v1/login', {
@@ -90,6 +102,7 @@ export default {
   getUser,
   updateUser,
   findUser,
+  getUserList,
   login,
   logout,
   register,

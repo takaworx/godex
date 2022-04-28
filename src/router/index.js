@@ -7,6 +7,7 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
 import GuestLayout from '@/layouts/GuestLayout.vue'
 
 import HomeView from '@/views/HomeView.vue'
+import UserListView from '@/views/UserListView.vue'
 import UserView from '@/views/UserView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
@@ -25,7 +26,12 @@ const routes = [
         component: HomeView
       },
       {
-        path: 'user/:id',
+        path: 'users',
+        name: 'users',
+        component: UserListView
+      },
+      {
+        path: 'users/:id',
         name: 'user',
         component: UserView
       }
