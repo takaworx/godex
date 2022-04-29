@@ -49,6 +49,9 @@ export default {
     ActionFavorite
   },
   computed: {
+    device () {
+      return this.$store.getters['window/getDevice']
+    },
     data () {
       return this.$store.getters['pokemon/getActiveCard']
     },
@@ -108,7 +111,7 @@ export default {
       return types.join(', ')
     },
     isMobile () {
-      return window.innerWidth < 960
+      return this.device === 'mobile' || this.device === 'tablet'
     },
     showCardDialog: {
       get () {
