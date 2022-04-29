@@ -1,7 +1,19 @@
 <template>
   <div class="pokemon-thumbnail">
     <div v-if="loaded" class="pokemon-card-details">
-      <v-card :dark="cardData.dark" :color="cardData.color">
+      <a
+        v-ripple="{ class: cardClass.text }"
+        href="#"
+        class="d-block pa-2 rounded-lg text-center text-capitalize text-decoration-none"
+        :class="cardClass.bg"
+        @click.prevent=""
+      >
+        <v-avatar size="96" class="ma-2">
+          <v-img :src="data.sprites.other['official-artwork'].front_default"></v-img>
+        </v-avatar>
+        <p :class="cardClass.text">{{ data.name }}</p>
+      </a>
+      <!-- <v-card :dark="cardData.dark" :color="cardData.color">
         <div class="d-flex flex-no-wrap justify-space-between">
           <div>
             <v-card-title class="text-uppercase py-2">{{ data.name }}</v-card-title>
@@ -13,7 +25,7 @@
             <v-img :src="data.sprites.other['official-artwork'].front_default"></v-img>
           </v-avatar>
         </div>
-      </v-card>
+      </v-card> -->
     </div>
     <v-skeleton-loader v-else type="list-item-avatar-three-line" />
   </div>
@@ -21,7 +33,7 @@
 
 <script>
 import PokemonApi from '@/services/pokemon-api'
-import PokemonCard from '@/components/PokemonCard.vue'
+// import PokemonCard from '@/components/PokemonCard.vue'
 
 export default {
   props: {
@@ -48,29 +60,20 @@ export default {
   methods: {
     async getPokemonData (name) {
       this.data = await PokemonApi.getPokemonByName(name)
-    },
-    fetchDataFromStore () {
-      this.$store.getters['pokemon/getPokemons'].find()
     }
   },
   components: {
-    PokemonCard
+    // PokemonCard
   },
   computed: {
     loaded () {
       return this.data !== null
     },
-    colorData () {
+    pokemonColorData () {
       return this.$store.getters['pokemon/getColors'].find(color => color.pokemons.find(pokemon => pokemon.name === this.data.name))?.name
     },
-    cardData () {
-      return {
-        color: this.cardColor,
-        dark: this.cardColor !== 'grey lighten-3'
-      }
-    },
     cardColor () {
-      switch (this.colorData) {
+      switch (this.pokemonColorData) {
         case 'black':
           return 'black lighten-4'
         case 'blue':
@@ -92,6 +95,12 @@ export default {
         case 'grey':
         default:
           return 'grey lighten-3'
+      }
+    },
+    cardClass () {
+      return {
+        bg: this.cardColor,
+        text: this.cardColor !== 'grey lighten-3' ? 'white--text' : 'black--text'
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="12" sm="6" md="4" xl="3" v-for="(pokemon, key) in pokemons" :key="key">
+  <v-container fluid class="pa-1">
+    <v-row no-gutters>
+      <v-col class="pa-1" cols="6" md="4" xl="3" v-for="(pokemon, key) in pokemons" :key="key">
         <pokemon-thumbnail :name="pokemon.name" />
       </v-col>
     </v-row>
