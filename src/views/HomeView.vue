@@ -33,7 +33,7 @@ export default {
           return 16
         case 'mobile':
         default:
-          return 8
+          return 12
       }
     },
     pokemons () {

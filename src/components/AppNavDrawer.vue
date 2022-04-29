@@ -12,6 +12,9 @@
           <v-list-item-title class="text-h6">{{ userName }}</v-list-item-title>
           <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
         </v-list-item-content>
+        <v-list-item-action>
+          <v-icon>mdi-chevron-right</v-icon>
+        </v-list-item-action>
       </v-list-item>
     </v-list>
     <v-divider />
