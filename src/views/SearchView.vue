@@ -59,6 +59,10 @@ export default {
     query () {
       this.page = 0
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$store.commit('search/setQuery', null)
+    next()
   }
 }
 </script>
