@@ -36,27 +36,39 @@
         </v-form>
         <div class="mt-6 text-center">
           <strong>Liked Pokemons</strong>
-          <div v-if="hasLikes" style="max-width: 375px" class="d-block mx-auto my-2">
-            <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._likes" :key="key" :id="pokemonId"></pokemon-thumbnail>
-          </div>
+          <v-container fluid v-if="hasLikes" class="pa-0">
+            <v-row no-gutters>
+              <v-col cols="12" sm="6" xl="4" class="pa-1" v-for="(pokemonId, key) in user._likes" :key="key">
+                <pokemon-thumbnail :id="pokemonId"></pokemon-thumbnail>
+              </v-col>
+            </v-row>
+          </v-container>
           <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
             No record found
           </div>
         </div>
         <div class="mt-6 text-center">
           <strong>Disliked Pokemons</strong>
-          <div v-if="hasDislikes" style="max-width: 375px" class="d-block mx-auto my-2">
-            <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._dislikes" :key="key" :id="pokemonId"></pokemon-thumbnail>
-          </div>
+          <v-container fluid v-if="hasDislikes" class="pa-0">
+            <v-row no-gutters>
+              <v-col cols="12" sm="6" xl="4" class="pa-1" v-for="(pokemonId, key) in user._dislikes" :key="key">
+                <pokemon-thumbnail :id="pokemonId"></pokemon-thumbnail>
+              </v-col>
+            </v-row>
+          </v-container>
           <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
             No record found
           </div>
         </div>
         <div class="mt-6 text-center">
           <strong>Favorite Pokemons</strong>
-          <div v-if="hasFavorites" style="max-width: 375px" class="d-block mx-auto my-2">
-            <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._favorites" :key="key" :id="pokemonId"></pokemon-thumbnail>
-          </div>
+          <v-container fluid v-if="hasFavorites" class="pa-0">
+            <v-row no-gutters>
+              <v-col cols="12" sm="6" xl="4" class="pa-1" v-for="(pokemonId, key) in user._favorites" :key="key">
+                <pokemon-thumbnail :id="pokemonId"></pokemon-thumbnail>
+              </v-col>
+            </v-row>
+          </v-container>
           <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
             No record found
           </div>
