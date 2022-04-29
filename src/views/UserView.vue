@@ -33,11 +33,10 @@
             </v-date-picker>
           </v-dialog>
           <v-btn large rounded block :loading="isLoading" color="primary" type="submit">Update</v-btn>
-          <v-btn large rounded outlined block class="mt-2" color="red" type="button" @click.prevent="logout">Logout</v-btn>
         </v-form>
         <div class="mt-6 text-center">
           <strong>Liked Pokemons</strong>
-          <div v-if="user._likes.length" style="max-width: 375px" class="d-block mx-auto my-2">
+          <div v-if="hasLikes" style="max-width: 375px" class="d-block mx-auto my-2">
             <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._likes" :key="key" :id="pokemonId"></pokemon-thumbnail>
           </div>
           <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
@@ -46,7 +45,7 @@
         </div>
         <div class="mt-6 text-center">
           <strong>Disliked Pokemons</strong>
-          <div v-if="user._dislikes.length" style="max-width: 375px" class="d-block mx-auto my-2">
+          <div v-if="hasDislikes" style="max-width: 375px" class="d-block mx-auto my-2">
             <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._dislikes" :key="key" :id="pokemonId"></pokemon-thumbnail>
           </div>
           <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
@@ -55,7 +54,7 @@
         </div>
         <div class="mt-6 text-center">
           <strong>Favorite Pokemons</strong>
-          <div v-if="user._favorites.length" style="max-width: 375px" class="d-block mx-auto my-2">
+          <div v-if="hasFavorites" style="max-width: 375px" class="d-block mx-auto my-2">
             <pokemon-thumbnail class="mb-1" v-for="(pokemonId, key) in user._favorites" :key="key" :id="pokemonId"></pokemon-thumbnail>
           </div>
           <div v-else style="max-width: 375px" class="d-block mx-auto my-2 text-grey">
@@ -69,8 +68,6 @@
 
 <script>
 import UserService from '@/services/user'
-
-import storage from '@/abstract/storage'
 
 import PokemonThumbnail from '@/components/PokemonThumbnail.vue'
 
@@ -115,6 +112,15 @@ export default {
     },
     isAuthUser () {
       return this.user?.id === this.authUser?.id
+    },
+    hasLikes () {
+      return this.user?._likes?.length ?? false
+    },
+    hasDislikes () {
+      return this.user?._dislikes?.length ?? false
+    },
+    hasFavorites () {
+      return this.user?._favorites?.length ?? false
     }
   },
   components: {
@@ -144,17 +150,6 @@ export default {
       }
 
       this.isLoading = false
-    },
-    async logout () {
-      try {
-        await UserService.logout()
-        await storage.removeItem('token')
-        this.$store.commit('setUser', null)
-        this.$router.push({ name: 'login' })
-      } catch (err) {
-        console.error(err)
-        alert('Something went wrong!')
-      }
     }
   }
 }

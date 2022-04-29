@@ -4,6 +4,13 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    this.$store.dispatch('window/calculate')
+
+    window.addEventListener('resize', () => {
+      this.$store.dispatch('window/calculate')
+    })
+  }
 }
 </script>

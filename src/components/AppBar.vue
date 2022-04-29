@@ -1,0 +1,26 @@
+<template>
+  <v-app-bar app dark>
+    <v-btn icon @click.prevent="$store.dispatch('openNavDrawer')" class="d-inline-flex d-lg-none">
+      <v-icon>mdi-menu</v-icon>
+    </v-btn>
+    <v-toolbar-title class="pl-1">GoDex</v-toolbar-title>
+    <v-spacer />
+    <v-toolbar-items class="d-none d-lg-inline-flex mr-1">
+      <v-btn text link exact :to="{ name: 'home' }">Pokemons</v-btn>
+      <v-btn text link exact :to="{ name: 'user-list' }">User List</v-btn>
+    </v-toolbar-items>
+    <v-btn icon link :to="{ name: 'user', params: { id: user.id } }">
+      <v-icon>mdi-account-outline</v-icon>
+    </v-btn>
+  </v-app-bar>
+</template>
+
+<script>
+export default {
+  computed: {
+    user () {
+      return this.$store.getters.getUser
+    }
+  }
+}
+</script>
