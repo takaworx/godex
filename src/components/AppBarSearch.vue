@@ -3,7 +3,7 @@
     <v-btn icon @click.prevent="goToPreviousPage">
       <v-icon>mdi-arrow-left</v-icon>
     </v-btn>
-    <v-text-field hide-details dense solo v-model="search" class="ml-1" label="Search.."></v-text-field>
+    <v-text-field autofocus hide-details dense solo v-model="search" class="ml-1" label="Search.."></v-text-field>
   </v-app-bar>
 </template>
 
