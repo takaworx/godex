@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import WindowModule from './window'
 import PokemonModule from './pokemon'
+import SearchModule from './search'
 
 Vue.use(Vuex)
 
@@ -37,6 +38,7 @@ export default new Vuex.Store({
   },
   modules: {
     window: WindowModule,
-    pokemon: PokemonModule
+    pokemon: PokemonModule,
+    search: SearchModule
   }
 })

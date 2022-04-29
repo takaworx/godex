@@ -9,6 +9,8 @@ import GuestLayout from '@/layouts/GuestLayout.vue'
 import HomeView from '@/views/HomeView.vue'
 import UserListView from '@/views/UserListView.vue'
 import UserView from '@/views/UserView.vue'
+import SearchView from '@/views/SearchView'
+
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 
@@ -34,6 +36,11 @@ const routes = [
         path: 'users/:id',
         name: 'user',
         component: UserView
+      },
+      {
+        path: 'search',
+        name: 'search',
+        component: SearchView
       }
     ]
   },

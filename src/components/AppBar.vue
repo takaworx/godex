@@ -1,21 +1,23 @@
 <template>
-  <v-app-bar app dark>
-    <v-btn icon @click.prevent="$store.dispatch('openNavDrawer')" class="d-inline-flex d-lg-none">
-      <v-icon>mdi-menu</v-icon>
-    </v-btn>
-    <v-toolbar-title class="pl-1">GoDex</v-toolbar-title>
-    <v-spacer />
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-  </v-app-bar>
+  <component :is="appBarToShow" />
 </template>
 
 <script>
+import AppBarDefault from './AppBarDefault.vue'
+import AppBarSearch from './AppBarSearch.vue'
+
 export default {
+  components: {
+    AppBarDefault,
+    AppBarSearch
+  },
   computed: {
-    user () {
-      return this.$store.getters.getUser
+    appBarToShow () {
+      if (this.$route.name === 'search') {
+        return AppBarSearch
+      }
+
+      return AppBarDefault
     }
   }
 }
