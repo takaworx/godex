@@ -6,26 +6,13 @@
         href="#"
         class="d-block pa-2 rounded-lg text-center text-capitalize text-decoration-none"
         :class="cardClass.bg"
-        @click.prevent=""
+        @click.prevent="openInCard"
       >
         <v-avatar size="96" class="ma-2">
           <v-img :src="data.sprites.other['official-artwork'].front_default"></v-img>
         </v-avatar>
         <p :class="cardClass.text">{{ data.name }}</p>
       </a>
-      <!-- <v-card :dark="cardData.dark" :color="cardData.color">
-        <div class="d-flex flex-no-wrap justify-space-between">
-          <div>
-            <v-card-title class="text-uppercase py-2">{{ data.name }}</v-card-title>
-            <v-card-actions>
-              <pokemon-card :data="data" :cardData="cardData" />
-            </v-card-actions>
-          </div>
-          <v-avatar size="96" class="ma-2">
-            <v-img :src="data.sprites.other['official-artwork'].front_default"></v-img>
-          </v-avatar>
-        </div>
-      </v-card> -->
     </div>
     <v-skeleton-loader v-else type="list-item-avatar-three-line" />
   </div>
@@ -33,7 +20,6 @@
 
 <script>
 import PokemonApi from '@/services/pokemon-api'
-// import PokemonCard from '@/components/PokemonCard.vue'
 
 export default {
   props: {
@@ -60,10 +46,10 @@ export default {
   methods: {
     async getPokemonData (name) {
       this.data = await PokemonApi.getPokemonByName(name)
+    },
+    openInCard () {
+      this.$store.commit('pokemon/setActiveCard', this.data)
     }
-  },
-  components: {
-    // PokemonCard
   },
   computed: {
     loaded () {

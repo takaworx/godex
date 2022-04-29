@@ -2,7 +2,8 @@ import PokemonApi from '@/services/pokemon-api'
 
 const state = {
   pokemons: [],
-  colors: []
+  colors: [],
+  activeCard: null
 }
 
 const getters = {
@@ -11,6 +12,9 @@ const getters = {
   },
   getColors: (state) => {
     return state.colors
+  },
+  getActiveCard: (state) => {
+    return state.activeCard
   }
 }
 
@@ -20,6 +24,9 @@ const mutations = {
   },
   pushColor (state, value) {
     state.colors.push(value)
+  },
+  setActiveCard (state, value) {
+    state.activeCard = value
   }
 }
 

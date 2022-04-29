@@ -8,15 +8,18 @@
     <div class="mt-8 text-center">
       <v-progress-circular indeterminate v-intersect="paginate"></v-progress-circular>
     </div>
+    <pokemon-card></pokemon-card>
   </v-container>
 </template>
 
 <script>
 import PokemonThumbnail from '@/components/PokemonThumbnail.vue'
+import PokemonCard from '@/components/PokemonCard.vue'
 
 export default {
   components: {
-    PokemonThumbnail
+    PokemonThumbnail,
+    PokemonCard
   },
   data: () => ({
     currentPage: 0
