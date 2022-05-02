@@ -1,8 +1,12 @@
 # GoDex
 
-GO pokedex
+GO pokedex app
 
-# Installation
+## Demo
+
+https://godex.takaworx.com
+
+## Installation
 
 - clone the repository
 - run `npm install`
